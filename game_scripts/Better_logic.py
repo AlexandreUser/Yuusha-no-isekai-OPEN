@@ -99,7 +99,7 @@ class path:
 
 
 class prop:
-	def __init__(self,x,y,width,height,reduction,pygame,types=0,instance="house"):
+	def __init__(self,x,y,width,height,reduction,pygame,types=0,instance="default"):
 		self.x = x 
 		self.y = y 
 		self.instance = instance
@@ -138,16 +138,17 @@ class prop:
 		#ONLY FOR DEBUG PORPOSES
 		#pygame.draw.rect(win, (255,0,0), self.hitbox,2)
 		if self.instance == "house":
-			if keys[pygame.K_q] and cutScene_inside > 190:
-				self.is_inside = self.collided_door(pygame,win,hero,camera,keys)
-
+			pass
 
 	def collided_door(self,pygame,win,hero,camera,keys):
-		deltaT = hero.get_rect(pygame,camera)
-		new_rect = pygame.Rect(self.placement_door)
-		if new_rect.colliderect(deltaT):
-			return True
-		else: 
+		if self.instance == "house":
+			deltaT = hero.get_rect(pygame,camera)
+			new_rect = pygame.Rect(self.placement_door)
+			if new_rect.colliderect(deltaT):
+				return True
+			else: 
+				return False
+		else:
 			return False
 class character:
 	

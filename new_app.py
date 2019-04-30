@@ -27,7 +27,7 @@ class phases:
 		self.is_inside = False
 	def init(self,pygame):
 		self.houses = []
-		self.houses.append(prop(400,100,500,500,80,pygame))
+		self.houses.append(prop(400,100,500,500,80,pygame,0,"house"))
 		self.houses.append(prop(-280,150,500,500,80,pygame,1,"not"))
 		self.houses.append(prop(-780,150,500,500,80,pygame,0,"not"))
 		self.houses.append(prop(-1380,150,500,500,80,pygame,2,"not"))
@@ -48,10 +48,17 @@ class phases:
 		self.paths[2].Inverted_L_path(win, pygame,camera)
 		self.paths[1].Inverted_L_path(win, pygame,camera)
 		self.paths[0].I_path(win,pygame,camera)
+		self.houses[0].instance = "house"
+		self.houses[1].instance = "not"
+		self.houses[2].instance = "not"
+		self.houses[3].instance = "not"
+		self.houses[4].instance = "not"
+		self.houses[5].instance = "not"
 
 		for i in range(0,len(self.houses)):
-			if self.houses[i].is_inside:
-				if keys[pygame.K_q]:
+			if keys[pygame.K_q] and cutScene_inside > 190:
+				self.houses[i].is_inside = self.houses[i].collided_door(pygame,win,hero,camera,keys)
+				if self.houses[i].is_inside:
 					self.is_inside = True
 			if self.houses[i].y+self.houses[i].height/3 > hero.y:
 				self.Sobreposto.append(self.houses[i])
@@ -93,12 +100,7 @@ def level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigg
 			cutScene_inside += 5
 			win.fill((cutScene_inside,cutScene_inside,cutScene_inside))
 		else:
-			level.display(camera,pygame,win,hero,keys,cutScene_inside)
-
-			
-			# Here we define the places with enemies
-			
-			# there are the enemies
+			level.display(camera,pygame,win,hero,keys,cutScene_inside)	
 			hero.draw(keys,win,pygame,camera)
 			level.display_sobreposto(camera,pygame,win,hero,keys)
 
