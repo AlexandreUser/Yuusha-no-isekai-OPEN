@@ -48,12 +48,7 @@ class phases:
 		self.paths[2].Inverted_L_path(win, pygame,camera)
 		self.paths[1].Inverted_L_path(win, pygame,camera)
 		self.paths[0].I_path(win,pygame,camera)
-		self.houses[0].instance = "house"
-		self.houses[1].instance = "not"
-		self.houses[2].instance = "not"
-		self.houses[3].instance = "not"
-		self.houses[4].instance = "not"
-		self.houses[5].instance = "not"
+
 
 		for i in range(0,len(self.houses)):
 			if keys[pygame.K_q] and cutScene_inside > 190:
