@@ -92,7 +92,7 @@ def level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigg
 	if level.is_inside == False:
 		if cutScene_inside < 200:
 			cutScene = 200
-			cutScene_inside += 5
+			cutScene_inside += 10
 			win.fill((cutScene_inside,cutScene_inside,cutScene_inside))
 		else:
 			level.display(camera,pygame,win,hero,keys,cutScene_inside)	
@@ -113,11 +113,15 @@ while run:
 	keys = pygame.key.get_pressed()
 	cutScene,cutScene_inside,level.is_inside = level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigger,run)
 	if level.is_inside != False:
-		level,run = event_holder(keys,win,pygame,hero,run,camera,level)
+		if cutScene > 10:
+			win.fill((cutScene, cutScene, cutScene))
+			cutScene-=10
+		else:
+			level,run = event_holder(keys,win,pygame,hero,run,camera,level)
 	else:
 		level.is_inside = False
 	newhud.render(win,pygame,hero)
-	pygame.time.delay(20)
+	pygame.time.delay(30)
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			run = False
