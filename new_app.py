@@ -1,8 +1,14 @@
 import pygame
 import time
-from game_scripts.Better_logic import character,prop,path,camera,render_font,HUD,event_holder
+from game_scripts.Better_logic import render_font,HUD,event_holder
+from game_scripts.house import background
+from game_scripts.tiles import path
+from game_scripts.character import character
+from game_scripts.prop import prop
+from game_scripts.furniture import furniture
+from game_scripts.camera import camera
 from game_scripts.npc import npc
-from game_scripts.Better_logic import background
+
 class options:
 	def __init__(self,width,height):
 		self.width = width
@@ -117,7 +123,7 @@ while run:
 			win.fill((cutScene, cutScene, cutScene))
 			cutScene-=10
 		else:
-			level,run = event_holder(keys,win,pygame,hero,run,camera,level)
+			level,run = event_holder("loja_de_armas",keys,win,pygame,hero,run,camera,level)
 	else:
 		level.is_inside = False
 	newhud.render(win,pygame,hero)
