@@ -21,13 +21,13 @@ class background:
 		self.screenwidth = screenwidth
 		self.screenheight = screenheight
 		self.position_x = [0,350]
-		self.position_y = [0,400]
+		self.position_y = [0,320]
 		self.room_limit_x = [200,900]
 		self.room_limit_y = [150,450]
 		self.casa = "./scenarios/casa_1.png"
 		self.porta = "./scenarios/door_1.png"
 		self.door_size = (120,250)
-		self.door_hitbox = (self.position_x[1]+self.door_size[0],self.position_y[1]+self.door_size[1],150,20)
+		self.door_hitbox = (self.position_x[1],self.position_y[1],150,20)
 	def draw(self,camera):
 		self.bgs = []
 		#self.bgs.append(return_bg(self.sky,self.screenwidth,self.screenheight,self.pygame))
@@ -40,7 +40,6 @@ class background:
 			self.win.blit(item,(self.position_x[h],self.position_y[h]))
 			h+=1
 	def draw_door(self,win,pygame,hero,camera,keys,level,debug=False):
-		self.update(camera)
 		self.door_hitbox = (self.position_x[1]+self.door_size[0],self.position_y[1]+self.door_size[1],150,20)
 		porta = return_2x(self.porta,4,self.pygame)
 		deltaT = hero.get_rect(pygame,camera)
@@ -54,9 +53,8 @@ class background:
 
 		if debug == True:
 			pygame.draw.rect(win, (255,0,0), self.door_hitbox,2)
-	def update(self,camera):
-
-		self.position_y[1] -= camera.y
-		self.position_y[0] -= camera.y
-		self.position_x[0] -= camera.x
-		self.position_x[1] -= camera.x
+	def update(self,hero):
+		self.position_y[1] -= hero.y
+		self.position_y[0] -= hero.y
+		self.position_x[0] -= hero.x
+		self.position_x[1] -= hero.x

@@ -82,15 +82,25 @@ def detect_colision(room_limit_x,room_limit_y,user):
 		user.colided_y_up = 0
 	return statement 
 
-
+def adjust_house_pos(camera,new_back):
+	new_back.position_x[0] = camera.x + 100
+	new_back.position_x[1] = camera.x + 450
+	new_back.position_y[0] = camera.y - 100
+	new_back.position_y[1] = camera.y + 220
+	new_back.room_limit_y[0] += camera.y - 100
+	new_back.room_limit_y[1] += camera.y - 100
+	new_back.room_limit_x[0] += camera.x + 100
+	new_back.room_limit_x[1] += camera.x + 100
+	return new_back
 def event_holder(local,keys,win,pygame,user,run,camera,level):
 	if local == "loja_de_armas":
 		color = (0,0,0)
 		win.fill(color)
 		new_back = background(pygame,win,1280,720,user)
+		new_back = adjust_house_pos(camera,new_back)
 		furnitures = []
 		furnitures.append(furniture(680,300,200,50,128,64,"mesa_1",pygame))
-
+	
 		new_back.draw(camera)
 		for block in furnitures:
 			block.render(camera,win,pygame)
@@ -104,4 +114,5 @@ def event_holder(local,keys,win,pygame,user,run,camera,level):
 
 		user.draw(keys,win,pygame,camera)
 		level.is_inside = new_back.draw_door(win,pygame,user,camera,keys,level)
+	
 		return level,run
