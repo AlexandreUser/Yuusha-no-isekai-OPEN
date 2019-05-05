@@ -20,5 +20,8 @@ class furniture:
 			self.hitbox = (self.x+35*2 , self.y+35*2, self.img_size[0]-70*2, self.img_size[1]-35*2)
 			pygame.draw.rect(win,  (48, 29, 19, 50), self.hitbox)
 			self.hitbox = (self.x+40 , self.y+35, self.img_size[0]-100, self.img_size[1]-35)
-		
+		elif self.name == "balcao_1.png":
+			self.img_size = self.image.get_size()
+			self.hitbox = (self.x+40 , self.y+35, self.img_size[0]-40, self.img_size[1]-35)
+
 		win.blit(self.image,(self.x,self.y))

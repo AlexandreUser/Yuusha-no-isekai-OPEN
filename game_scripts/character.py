@@ -142,11 +142,17 @@ class character:
 			if new_rect[h].colliderect(deltaT):
 				if new_rect[h][1] > deltaT[1]:
 					self.colided_y_up = 1
-				elif new_rect[h][1] < deltaT[1]:
+				else:
+					self.colided_y_up = 0
+				if new_rect[h][1] < deltaT[1]:
 					self.colided_y_down = 1
+				else: 
+					self.colided_y_down = 0
 				if new_rect[h][0] > deltaT[0]:
 					self.colided_x_up = 1
-					self.colided_x_down = 0
-				elif new_rect[h][0] < deltaT[0]:
-					self.colided_x_down = 1
+				else:
 					self.colided_x_up = 0
+				if new_rect[h][0] < deltaT[0]:
+					self.colided_x_down = 1
+				else:
+					self.colided_x_down = 0 

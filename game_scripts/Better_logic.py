@@ -100,7 +100,8 @@ def event_holder(local,keys,win,pygame,user,run,camera,level):
 		new_back = adjust_house_pos(camera,new_back)
 		furnitures = []
 		furnitures.append(furniture(680,300,200,50,128,64,"mesa_1",pygame))
-	
+		furnitures.append(furniture(305,400,80,50,128,64,"balcao_1",pygame))
+
 		new_back.draw(camera)
 		for block in furnitures:
 			block.render(camera,win,pygame)

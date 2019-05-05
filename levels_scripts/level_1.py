@@ -55,7 +55,7 @@ class phases:
 			else:
 				self.npcs[i].draw(win,pygame,camera)
 		self.__version.color = (255,255,255)
-		self.__version.text("Alpha v.0.0.6",win)
+		self.__version.text("Alpha v.0.0.7",win)
 	def display_sobreposto(self,camera,pygame,win,hero,keys):
 			#if self.is_sobrepost == False:
 				#self.enemies[h].draw(win,pygame,camera,hero)
