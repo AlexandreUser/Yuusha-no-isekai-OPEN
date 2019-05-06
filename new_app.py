@@ -68,7 +68,7 @@ while run:
 			win.fill((cutScene, cutScene, cutScene))
 			cutScene-=10
 		else:
-			level,run = render_inside(gaming,"loja_de_armas",keys,win,pygame,hero,run,camera,level)
+			level,run = render_inside(gaming,level.instance_inside,keys,win,pygame,hero,run,camera,level)
 			
 	else:
 		level.is_inside = False

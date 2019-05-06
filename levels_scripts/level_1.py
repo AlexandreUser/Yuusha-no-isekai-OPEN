@@ -15,14 +15,15 @@ class phases:
 		self.houses = []
 		self.paths = []
 		self.is_inside = False
+		self.instance_inside = ""
 	def init(self,pygame):
 		self.houses = []
-		self.houses.append(prop(400,100,500,500,80,pygame,0,"house"))
-		self.houses.append(prop(-280,150,500,500,80,pygame,1,"house"))
-		self.houses.append(prop(-780,150,500,500,80,pygame,0,"not"))
-		self.houses.append(prop(-1380,150,500,500,80,pygame,2,"not"))
-		self.houses.append(prop(-280,600,500,500,80,pygame,2,"not"))
-		self.houses.append(prop(-1380,600,500,500,80,pygame,1,"not"))
+		self.houses.append(prop(400,100,500,500,80,pygame,0,"loja_de_armas"))
+		self.houses.append(prop(-280,150,500,500,80,pygame,1,"loja_de_armas"))
+		self.houses.append(prop(-780,150,500,500,80,pygame,0))
+		self.houses.append(prop(-1380,150,500,500,80,pygame,2))
+		self.houses.append(prop(-280,600,500,500,80,pygame,2))
+		self.houses.append(prop(-1380,600,500,500,80,pygame,1))
 		self.paths = []
 		self.paths.append(path(560,500,12))
 		self.paths.append(path(530,550,20))
@@ -46,6 +47,7 @@ class phases:
 			if keys[pygame.K_q] and cutScene_inside > 190:
 				self.houses[i].is_inside = self.houses[i].collided_door(pygame,win,hero,camera,keys)
 				if self.houses[i].is_inside:
+					self.instance_inside = self.houses[i].instance
 					self.is_inside = True
 			if self.houses[i].y+self.houses[i].height/3 > hero.y:
 				self.Sobreposto.append(self.houses[i])

@@ -49,11 +49,11 @@ class prop:
 			win.blit(self.prop_blit,((self.x-camera.x)-self.reduction/2,((self.y-camera.y)-self.reduction/2)))
 		#ONLY FOR DEBUG PORPOSES
 		#pygame.draw.rect(win, (255,0,0), self.hitbox,2)
-		if self.instance == "house":
+		if self.instance != "default":
 			pass
 
 	def collided_door(self,pygame,win,hero,camera,keys):
-		if self.instance == "house":
+		if self.instance != "default":
 			deltaT = hero.get_rect(pygame,camera)
 			new_rect = pygame.Rect(self.placement_door)
 			if new_rect.colliderect(deltaT):
