@@ -1,4 +1,35 @@
-from game_scripts.Better_logic import return_2x,render_font,return_sc
+def return_2x(url,times,pygame):
+	img = pygame.image.load(url)
+	size = img.get_size()
+	bigger = pygame.transform.scale(img,(int(size[0]*times),int(size[1]*times)))
+	return bigger
+def return_sc(url,pygame,x,y,sizing):
+	img = pygame.image.load(url)
+	size = img.get_size()
+	bigger = pygame.transform.scale(img,(int(x*sizing),int(y*sizing)))
+	return bigger
+def return_bg(url,width,height,pygame):
+	bg = pygame.image.load(url)
+	size = bg.get_size()
+	print(size)
+	if(width > size[0]):
+		bigger = pygame.transform.scale(bg,(int((width/size[0])*size[0]),int((height/size[1])*size[1])))
+		print(bigger.get_size())
+		return bigger
+	else:
+		return bg
+class render_font:
+	def __init__(self,pygame,url,size,x,y):
+		self.font = pygame.font.Font(url, size)
+		self.x = x
+		self.y = y
+		self.color = (0,0,0)
+	def text(self,text,win):
+		text = self.font.render(text, True,self.color)
+		win.blit(text,(self.x , self.y ))
+	def update(self,x,y):
+		self.x = x
+		self.y = y
 import time
 class button():
     def __init__(self, color, x,y,width,height, text=''):
@@ -78,7 +109,7 @@ class npc:
 			    [0,0,50,20])
 		win.blit(surface, ((self.x+self.width*1.1)-camera.x, (self.y+self.height*5.5)-camera.y))
 		win.blit(self.idle[self.actual_frame//2],(self.x-camera.x,self.y-camera.y))
-
+		#pygame.draw.rect(win, (0,0,0), ((self.x-self.width)-camera.x,(self.y+self.height*6)-camera.y,self.width*4,self.height*2),0)
 	def get_rect(self,pygame,camera):
 		return pygame.Rect((self.x-self.width)-camera.x,(self.y+self.height*6)-camera.y,self.width*4,self.height*2)
 	def dialogue(self,hero,win,pygame,camera,keys,options):

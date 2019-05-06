@@ -1,5 +1,5 @@
-# Yuusha no Isekai (temporary name)
-	Version Alpha 0.0.0.6
+# Yuusha no Isekai (temporary name) - Isekai Pix
+	Version Alpha 0.0.0.7
 # Summary 0.0.0.1:
 	- This is a game maded entirely in python 3 using the Pygame Engine (with some modules and some physics in C).
 	- Copyright AlexandreUser.
@@ -8,7 +8,7 @@
 	the history is simple and open, like a sandbox game, you can level up your character by killing monsters or making quests. During this time the amount of experience can also be divided betwen all players on your party or guild.
 		In the near future we hope we can make a skin system inside the game, but with python 3 syntax, that would be pretty hard.
 # Goals:
-	Version Alpha 0.0.0.7: Npcs inside buildings. Deadline: 04/05/2019.
+	Version Alpha 0.0.0.7: Npcs inside buildings. Deadline: 04/05/2019 COMPLETED!.
 	Version Alpha 0.0.0.8: simple dash and combat system. Deadline: 10/05/2019.
 	Version Alpha 0.0.0.9: simple enemy(ies) and working HUD. Deadline: 15/05/2019.
 	version Alpha 0.0.0.10: simple quests. Deadline: 25/05/2019.

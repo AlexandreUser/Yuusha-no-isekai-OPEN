@@ -1,7 +1,7 @@
 import pygame
 import time
 from levels_scripts.level_1 import phases
-from game_scripts.Better_logic import render_font,HUD,event_holder
+from game_scripts.Better_logic import render_font,HUD,render_inside
 from game_scripts.house import background
 from game_scripts.tiles import path
 from game_scripts.character import character
@@ -68,7 +68,8 @@ while run:
 			win.fill((cutScene, cutScene, cutScene))
 			cutScene-=10
 		else:
-			level,run = event_holder("loja_de_armas",keys,win,pygame,hero,run,camera,level)
+			level,run = render_inside(gaming,"loja_de_armas",keys,win,pygame,hero,run,camera,level)
+			
 	else:
 		level.is_inside = False
 	newhud.render(win,pygame,hero)

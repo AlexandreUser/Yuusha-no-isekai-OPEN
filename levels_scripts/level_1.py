@@ -1,4 +1,4 @@
-from game_scripts.Better_logic import render_font,HUD,event_holder
+from game_scripts.Better_logic import render_font,HUD,render_inside
 from game_scripts.house import background
 from game_scripts.tiles import path
 from game_scripts.character import character
@@ -28,9 +28,11 @@ class phases:
 		self.paths.append(path(530,550,20))
 		self.paths.append(path(530,1000,20))
 		self.npcs = []
-		self.npcs.append(npc(420,380,"leona",pygame))
+		self.npcs_insides = []
+		self.npcs.append(npc(420,380,"lucio",pygame))
+		self.npcs_insides.append(npc(360,190,"leona",pygame))
 		#self.npcs.append(npc(-300,440,"lucio",pygame))
-		#self.npcs[1].dialogues_text = ["Olha só, você é um novato","Boa sorte daqui pra frente"]
+		self.npcs[0].dialogues_text = ["Olha só, você é um novato","Boa sorte daqui pra frente"]
 		self.Sobreposto = []
 		self.npc_sobreposto = []
 		self.__version = render_font(pygame,"./fonts/Pixel_miners.otf",24,0,20)

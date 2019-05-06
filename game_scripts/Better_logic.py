@@ -3,6 +3,7 @@ from game_scripts.house import background
 from game_scripts.tiles import path
 from game_scripts.furniture import furniture
 from game_scripts.camera import camera
+from game_scripts.npc import npc
 
 class render_font:
 	def __init__(self,pygame,url,size,x,y):
@@ -82,7 +83,7 @@ def detect_colision(room_limit_x,room_limit_y,user):
 		user.colided_y_up = 0
 	return statement 
 
-def adjust_house_pos(camera,new_back):
+def adjust_house_pos(camera,new_back,npcs,npcs_pos):
 	new_back.position_x[0] = camera.x + 100
 	new_back.position_x[1] = camera.x + 450
 	new_back.position_y[0] = camera.y - 100
@@ -91,18 +92,28 @@ def adjust_house_pos(camera,new_back):
 	new_back.room_limit_y[1] += camera.y - 100
 	new_back.room_limit_x[0] += camera.x + 100
 	new_back.room_limit_x[1] += camera.x + 100
-	return new_back
-def event_holder(local,keys,win,pygame,user,run,camera,level):
+	for i in range(0,len(npcs)):
+		npcs[i].x = camera.x + npcs_pos[i][0]
+		npcs[i].y = camera.y + npcs_pos[i][1]
+	return new_back,npcs
+def render_inside(gaming,local,keys,win,pygame,user,run,camera,level):
 	if local == "loja_de_armas":
+		npcs_pos = [(400,120)]
 		color = (0,0,0)
 		win.fill(color)
+		npcs = []
 		new_back = background(pygame,win,1280,720,user)
-		new_back = adjust_house_pos(camera,new_back)
+		new_back,level.npcs_insides = adjust_house_pos(camera,new_back,level.npcs_insides,npcs_pos)
 		furnitures = []
 		furnitures.append(furniture(680,300,200,50,128,64,"mesa_1",pygame))
 		furnitures.append(furniture(305,400,80,50,128,64,"balcao_1",pygame))
 
 		new_back.draw(camera)
+		vendor = level.npcs_insides[0]
+		vendor.dialogues_text = ["Tem interesse em comprar alguma arma ?","posso lhe fazer um preço especial"]
+		vendor.height = 30
+		vendor.draw(win,pygame,camera)
+
 		for block in furnitures:
 			block.render(camera,win,pygame)
 		for event in pygame.event.get():
@@ -114,6 +125,7 @@ def event_holder(local,keys,win,pygame,user,run,camera,level):
 			user.collision(furnitures,pygame,camera)
 
 		user.draw(keys,win,pygame,camera)
+		vendor.dialogue(user,win,pygame,camera,keys,gaming.menu_placement())
 		level.is_inside = new_back.draw_door(win,pygame,user,camera,keys,level)
-	
+			
 		return level,run
