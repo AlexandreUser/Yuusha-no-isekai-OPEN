@@ -32,6 +32,7 @@ def return_2x(url,times,pygame):
 	size = img.get_size()
 	bigger = pygame.transform.scale(img,(int(size[0]*times),int(size[1]*times)))
 	return bigger
+
 def return_sc(url,pygame,x,y,sizing):
 	img = pygame.image.load(url)
 	size = img.get_size()

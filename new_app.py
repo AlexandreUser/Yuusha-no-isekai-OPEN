@@ -9,7 +9,7 @@ from game_scripts.prop import prop
 from game_scripts.furniture import furniture
 from game_scripts.camera import camera
 from game_scripts.npc import npc
-
+from game_scripts.char_selection import select_hero
 class options:
 	def __init__(self,width,height):
 		self.width = width
@@ -26,7 +26,7 @@ pygame.init()
 screenwidth = 1280
 screenheight = 680
 gaming = options(screenwidth,screenheight)
-
+selected_hero = select_hero(500,50,pygame)
 hero = character("Naofumi",pygame)
 hero.x = 500
 hero.y = 500
@@ -59,20 +59,26 @@ def level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigg
 	return cutScene, cutScene_inside,level.is_inside
 cutScene = 200
 cutScene_inside = 0
+color = (103, 140, 51)
 while run:
-	win.fill((103, 140, 51))
+	win.fill(color)
 	keys = pygame.key.get_pressed()
-	cutScene,cutScene_inside,level.is_inside = level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigger,run)
-	if level.is_inside != False:
-		if cutScene > 10:
-			win.fill((cutScene, cutScene, cutScene))
-			cutScene-=10
+	if selected_hero.selected == True:
+		color = (103, 140, 51)
+		cutScene,cutScene_inside,level.is_inside = level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigger,run)
+		if level.is_inside != False:
+			if cutScene > 10:
+				win.fill((cutScene, cutScene, cutScene))
+				cutScene-=10
+			else:
+				level,run = render_inside(gaming,level.instance_inside,keys,win,pygame,hero,run,camera,level)
+				
 		else:
-			level,run = render_inside(gaming,level.instance_inside,keys,win,pygame,hero,run,camera,level)
-			
+			level.is_inside = False
+		newhud.render(win,pygame,hero)
 	else:
-		level.is_inside = False
-	newhud.render(win,pygame,hero)
+		color = (0, 0, 0)
+		selected_hero.draw(win,pygame)
 	pygame.time.delay(30)
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
