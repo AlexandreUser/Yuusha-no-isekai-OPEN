@@ -8,8 +8,8 @@ class select_hero:
 		self.old_x = x
 		self.old_y = y
 		self.y = y
-		self.hero_size = 2
-		self.moldur_img_size = 3
+		self.hero_size = 1.5
+		self.moldur_img_size = 2.5
 		self.heroes = [
 		return_2x("./char_selection/tank_grass/1.png",self.hero_size,pygame),
 		return_2x("./char_selection/tank_grass/2.png",self.hero_size,pygame),
