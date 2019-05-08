@@ -22,6 +22,5 @@ class furniture:
 			self.hitbox = (self.x+40 , self.y+35, self.img_size[0]-100, self.img_size[1]-35)
 		elif self.name == "balcao_1.png":
 			self.img_size = self.image.get_size()
-			self.hitbox = (self.x+40 , self.y+35, self.img_size[0]-40, self.img_size[1]-35)
-
+			self.hitbox = (self.x , self.y, self.img_size[0], self.img_size[1])
 		win.blit(self.image,(self.x,self.y))

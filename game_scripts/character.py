@@ -49,7 +49,6 @@ class character:
 		self.colided_x_down = 0
 		self.colided_y_up = 0
 		self.colided_y_down = 0
-
 		self.moving = False
 		self.hitbox = (self.x+self.width,self.y+self.height*6,self.width,self.height)
 		self.direction = "L"
@@ -129,30 +128,35 @@ class character:
 		#pygame.draw.ellipse(win, shadown, [self.x+self.width*1.1, self.y+self.height*5.5, 50, 20],1)
 		
 		self.animate(win,camera)
-	def collision(self,rect1,pygame,camera):
+	def collision(self,rect1,pygame,camera,statement=["",""]):
 		new_rect = []
 		for i in range(0,len(rect1)):
 			new_rect.append(pygame.Rect(rect1[i].hitbox))
 		deltaT = self.get_rect(pygame,camera)
-		self.colided_y_up = 0
-		self.colided_y_down = 0 
-		self.colided_x_down = 0
-		self.colided_x_up = 0 
+		if statement[1] != "Y_up":
+			self.colided_y_up = 0
+		elif statement[1] != "Y_down":
+			self.colided_y_down = 0
+		if statement[0] != "X_up":
+			self.colided_x_up = 0
+		elif statement[0] != "X_down":
+			self.colided_x_down = 0
+		
 		for h in range(0,len(new_rect)):
 			if new_rect[h].colliderect(deltaT):
 				if new_rect[h][1] > deltaT[1]:
 					self.colided_y_up = 1
-				else:
+				elif statement[1] != "Y_up":
 					self.colided_y_up = 0
-				if new_rect[h][1] < deltaT[1]:
+				if new_rect[h][1] < deltaT[1]  :
 					self.colided_y_down = 1
-				else: 
+				elif statement[1] != "Y_down": 
 					self.colided_y_down = 0
-				if new_rect[h][0] > deltaT[0]:
+				if new_rect[h][0] > deltaT[0] :
 					self.colided_x_up = 1
-				else:
+				elif statement[0] != "X_up":
 					self.colided_x_up = 0
-				if new_rect[h][0] < deltaT[0]:
+				if new_rect[h][0] < deltaT[0] :
 					self.colided_x_down = 1
-				else:
+				elif statement[0] != "X_down":
 					self.colided_x_down = 0 

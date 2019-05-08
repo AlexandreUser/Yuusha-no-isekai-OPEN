@@ -53,15 +53,16 @@ shadown = (93, 105, 38,20)
 
 
 def detect_colision(room_limit_x,room_limit_y,user):
-	statement = False
+	statement_y = ""
+	statement_x = ""
 	if user.x < room_limit_x[0]:
 		user.colided_x_down = 1
-		statement = True
+		statement_x = "X_down"
 	else:
 		user.colided_x_down = 0
 	
 	if user.x > room_limit_x[1]:
-		statement = True
+		statement_x = "X_up"
 		
 		user.colided_x_up = 1
 	else:
@@ -69,21 +70,20 @@ def detect_colision(room_limit_x,room_limit_y,user):
 		user.colided_x_up = 0
 
 	if user.y < room_limit_y[0]:
-		statement = True
+		statement_y = "Y_down"
 
 		user.colided_y_down = 1
 	else:
 
 		user.colided_y_down = 0
 	if user.y > room_limit_y[1]:
-		statement = True
+		statement_y = "Y_up"
 
 		user.colided_y_up = 1
 	else:
 
 		user.colided_y_up = 0
-	return statement 
-
+	return [statement_x,statement_y]
 def adjust_house_pos(camera,new_back,npcs,npcs_pos):
 	new_back.position_x[0] = camera.x + 100
 	new_back.position_x[1] = camera.x + 450
@@ -121,9 +121,9 @@ def render_inside(gaming,local,keys,win,pygame,user,run,camera,level):
 			if event.type == pygame.QUIT:
 				run = False
 
-		limited = detect_colision(new_back.room_limit_x,new_back.room_limit_y,user)
-		if not limited:
-			user.collision(furnitures,pygame,camera)
+		statement = detect_colision(new_back.room_limit_x,new_back.room_limit_y,user)
+		print(statement)
+		user.collision(furnitures,pygame,camera,statement)
 
 		user.draw(keys,win,pygame,camera)
 		vendor.dialogue(user,win,pygame,camera,keys,gaming.menu_placement())
