@@ -26,7 +26,7 @@ pygame.init()
 screenwidth = 1280
 screenheight = 680
 gaming = options(screenwidth,screenheight)
-selected_hero = select_hero(500,50,pygame)
+selected_hero = select_hero(550,200,pygame)
 hero = character("Naofumi",pygame)
 hero.x = 500
 hero.y = 500
@@ -50,7 +50,7 @@ def level_1(keys,level,hero,pygame,win,camera,cutScene,cutScene_inside,not_trigg
 			hero.draw(keys,win,pygame,camera)
 			level.display_sobreposto(camera,pygame,win,hero,keys)
 
-			hero.collision(level.houses,pygame,camera)
+			hero.colision_outside(level.houses,pygame,camera)
 			level.npcs[0].dialogue(hero,win,pygame,camera,keys,gaming.menu_placement())
 			#level.npcs[1].dialogue(hero,win,pygame,camera,keys,gaming.menu_placement())
 			camera.update(gaming.mid_place(hero)[0]+hero.x,gaming.mid_place(hero)[1]+hero.y)	

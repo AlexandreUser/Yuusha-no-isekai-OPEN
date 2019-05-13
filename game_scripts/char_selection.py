@@ -7,9 +7,13 @@ class select_hero:
 		self.x = x
 		self.old_x = x
 		self.old_y = y
+		self.old_hero_x = x+100
+		self.old_hero_y = y+100
 		self.y = y
-		self.hero_size = 1.5
-		self.moldur_img_size = 2.5
+		self.hero_x = x+100
+		self.hero_y = y+100
+		self.hero_size = 1
+		self.moldur_img_size = 2
 		self.heroes = [
 		return_2x("./char_selection/tank_grass/1.png",self.hero_size,pygame),
 		return_2x("./char_selection/tank_grass/2.png",self.hero_size,pygame),
@@ -36,7 +40,7 @@ class select_hero:
 		pos = pygame.mouse.get_pos()
 		self.hover(pos,pygame)
 		win.blit(self.background,(self.x-60,self.y-100))
-		win.blit(self.heroes[self.actual_frame//3],(self.x,self.y))
+		win.blit(self.heroes[self.actual_frame//3],(self.hero_x-100,self.hero_y-100))
 		win.blit(self.moldura,(self.x-60,self.y-100))
 	def isOver(self, pos):
 		if pos[0] > self.x and pos[0] < self.x + self.width:
@@ -48,11 +52,13 @@ class select_hero:
 			if pygame.mouse.get_pressed()[0]:
 				self.selected = True
 
-			self.hero_size = 2.2
-		
+			self.hero_size = 1.2
+			
 			self.x = self.old_x - 20
 			self.y = self.old_y - 50
-			self.moldur_img_size = 3.3
+			self.hero_y = (self.old_hero_y) - 40
+			self.hero_x = (self.old_hero_x) - 20
+			self.moldur_img_size = 2
 			self.heroes = [
 			return_2x("./char_selection/tank_grass/1.png",self.hero_size,pygame),
 			return_2x("./char_selection/tank_grass/2.png",self.hero_size,pygame),
@@ -66,8 +72,10 @@ class select_hero:
 		else:
 			self.x = self.old_x
 			self.y = self.old_y
-			self.hero_size = 2
-			self.moldur_img_size = 3
+			self.hero_x = self.old_hero_x
+			self.hero_y = self.old_hero_y
+			self.hero_size = 1
+			self.moldur_img_size = 1.8
 			self.heroes = [
 			return_2x("./char_selection/tank_grass/1.png",self.hero_size,pygame),
 			return_2x("./char_selection/tank_grass/2.png",self.hero_size,pygame),

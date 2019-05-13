@@ -160,3 +160,30 @@ class character:
 					self.colided_x_down = 1
 				elif statement[0] != "X_down":
 					self.colided_x_down = 0 
+	def colision_outside(self,rect1,pygame,camera,statement=["",""]):
+			new_rect = []
+			for i in range(0,len(rect1)):
+				new_rect.append(pygame.Rect(rect1[i].hitbox))
+			deltaT = self.get_rect(pygame,camera)
+			self.colided_y_up = 0
+			self.colided_y_down = 0 
+			self.colided_x_down = 0
+			self.colided_x_up = 0 
+			for h in range(0,len(new_rect)):
+				if new_rect[h].colliderect(deltaT):
+					if new_rect[h][1] > deltaT[1]:
+						self.colided_y_up = 1
+					else:
+						self.colided_y_up = 0
+					if new_rect[h][1] < deltaT[1]:
+						self.colided_y_down = 1
+					else: 
+						self.colided_y_down = 0
+					if new_rect[h][0] > deltaT[0]:
+						self.colided_x_up = 1
+					else:
+						self.colided_x_up = 0
+					if new_rect[h][0] < deltaT[0]:
+						self.colided_x_down = 1
+					else:
+						self.colided_x_down = 0 
