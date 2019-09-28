@@ -6,7 +6,7 @@ class character:
 		self.name = name
 		self.width = 40
 		self.height = 20
-		self.speed = 10
+		self.speed =  15
 		self.x = 0
 		self.y = 0
 		self.font = render_font(pygame,"./fonts/Pixel_miners.otf",12,self.x,self.y)
