@@ -1,4 +1,4 @@
-# Yuusha no Isekai (temporary name) - Isekai Pix
+# Yuusha no Isekai (temporary name) - Isekai Pix (deprecated, new version coming in 28/03/2020)
 	Version Alpha 0.0.0.7
 # Summary 0.0.0.1:
 	- This is a game maded entirely in python 3 using the Pygame Engine (with some modules and some physics in C).
